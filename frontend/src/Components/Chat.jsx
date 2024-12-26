@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, createContext, useContext } from "react";
 import "./Chat.css";
 import axios from "axios";
 import MarkdownRenderer from "./MarkDown";
 
-const Chat = () => {
-  const [prompt, setPrompt] = useState("");
+// Create a context for global chat state
+const ChatContext = createContext();
+
+// Provide the ChatContext to your application
+const ChatProvider = ({ children }) => {
   const [chats, setChats] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedChats = localStorage.getItem("chatHistory");
@@ -14,23 +17,33 @@ const Chat = () => {
       const parsedChats = JSON.parse(savedChats);
       const restoredChats = parsedChats.map((chat) => ({
         user: chat.user,
-        bot: <MarkdownRenderer markdownText={chat.bot} />, 
+        bot: <MarkdownRenderer markdownText={chat.bot} />,
       }));
-      console.log("restored chat",restoredChats);
-      console.log("rendering.............");
       setChats(restoredChats);
     }
   }, []);
 
-  // Save chat history to localStorage whenever chats change
   useEffect(() => {
     const serializedChats = chats.map((chat) => ({
       user: chat.user,
-      bot: chat.bot ? chat.bot.props.markdownText : "", 
+      bot: chat.bot ? chat.bot.props.markdownText : "",
     }));
-    console.log("Saved chats:", serializedChats);
     localStorage.setItem("chatHistory", JSON.stringify(serializedChats));
   }, [chats]);
+
+  return (
+    <ChatContext.Provider value={{ chats, setChats }}>
+      {children}
+    </ChatContext.Provider>
+  );
+};
+
+// Use the ChatContext in your Chat component
+const Chat = () => {
+  const { chats, setChats } = useContext(ChatContext);
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+
   async function getText() {
     try {
       setLoading(true);
@@ -97,4 +110,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export { Chat, ChatProvider };

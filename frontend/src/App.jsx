@@ -1,5 +1,5 @@
 import Auth from "./Components/Auth.jsx";
-import Chat from "./Components/Chat.jsx";
+import {Chat} from "./Components/Chat.jsx";
 import  Home  from "./Components/Home.jsx";
 import { Navbar } from "./Components/Navbar.jsx";
 import { BrowserRouter , Routes, Route } from "react-router-dom";

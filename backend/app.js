@@ -16,7 +16,7 @@ app.use(cors({origin:['http://localhost:5173','http://localhost:5174']}));
 app.post("/chat", async (req, res) => {
   try {
     const {prompt}=req.body
-    const result = await model.generateContent(`Give a detailed response for the following prompt: ${prompt}`);
+    const result = await model.generateContent(`${prompt}`);
     const response = result.response.text();
     res.status(201).json({ message: response });
   } catch (error) {

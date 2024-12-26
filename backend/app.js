@@ -3,7 +3,6 @@ const app = express();
 const port = 3000;
 const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const { message } = require("prompt");
 const cors = require("cors");
 
 

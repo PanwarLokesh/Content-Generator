@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Chat.css";
 import axios from "axios";
 import MarkdownRenderer from "./MarkDown";
@@ -8,7 +8,6 @@ const Chat = () => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  
   async function getText() {
     try {
       setLoading(true);
@@ -48,8 +47,10 @@ const Chat = () => {
     <div className="container">
       <div className="chatbox">
         <div className="chat">
+          {chats.length > 0? null: <h1 className="Starter">What can I help with?</h1>}
           {chats.map((chat, index) => (
             <div className="box" key={index}>
+              
               {chat.user && (
                 <span className="chat-message-user">{chat.user}</span>
               )}

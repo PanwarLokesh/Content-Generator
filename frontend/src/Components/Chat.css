@@ -86,7 +86,10 @@
   resize: none; 
 }
 
-
+.loading{
+  color: white;
+  font-size: 16px;
+}
 .chat::-webkit-scrollbar,
 .message textarea::-webkit-scrollbar {
   width: 6px;

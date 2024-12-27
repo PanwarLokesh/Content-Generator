@@ -4,10 +4,8 @@ import "./Chat.css";
 import axios from "axios";
 import MarkdownRenderer from "./MarkDown";
 
-// Create a context for global chat state
-const ChatContext = createContext();
 
-// Provide the ChatContext to your application
+const ChatContext = createContext();
 const ChatProvider = ({ children }) => {
   const [chats, setChats] = useState([]);
 
@@ -38,7 +36,6 @@ const ChatProvider = ({ children }) => {
   );
 };
 
-// Use the ChatContext in your Chat component
 const Chat = () => {
   const { chats, setChats } = useContext(ChatContext);
   const [prompt, setPrompt] = useState("");

@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+
 const  Home= ()=> {
   const { login,authenticated} = usePrivy();
-  const navigate = useNavigate();
 
   return (
     <div className="home">

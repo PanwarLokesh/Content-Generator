@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext ,useRef} from "react";
 import "./Chat.css";
 import axios from "axios";
 import MarkdownRenderer from "./MarkDown";
@@ -40,6 +40,7 @@ const Chat = () => {
   const { chats, setChats } = useContext(ChatContext);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
+  const chatEndRef = useRef(null);
 
   async function getText() {
     try {
@@ -77,6 +78,10 @@ const Chat = () => {
     }
   }
 
+  useEffect(()=>{
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  },[chats]);
+
   return (
     <div className="container">
       <div className="chatbox">
@@ -92,6 +97,7 @@ const Chat = () => {
               {chat.bot && <div className="chat-message-bot">{chat.bot}</div>}
             </div>
           ))}
+           <div ref={chatEndRef}></div>
         </div>
         <div className="message">
           <textarea

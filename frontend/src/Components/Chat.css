@@ -1,11 +1,5 @@
 .container {
-  /* margin: 0;
-  padding: 0;
-  background-color: rgb(47 47 47);
-  height: 100vh;
-  width: 100vw; */
-
-  height: calc(100vh - 4rem); /* Subtract navbar height */
+  height: calc(100vh - 4rem); 
   background-color: rgb(47 47 47);
   display: flex;
   flex-direction: column;

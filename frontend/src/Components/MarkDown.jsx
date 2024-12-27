@@ -13,19 +13,18 @@ const MarkdownRenderer = ({ markdownText, streaming = false, onComplete }) => {
       let currentIndex = 0;
 
       const interval = setInterval(() => {
-        // Ensure currentIndex is valid and within bounds
         if (currentIndex < markdownText.length) {
-          setDisplayedText((prev) => prev + (markdownText[currentIndex] || "")); // Avoid undefined
+          setDisplayedText((prev) => prev + (markdownText[currentIndex] || "")); 
           currentIndex++;
         } else {
           clearInterval(interval);
           if (onComplete) onComplete();
         }
-      }); // Adjust the delay for the streaming speed
+      });
 
-      return () => clearInterval(interval); // Cleanup on unmount
+      return () => clearInterval(interval); 
     } else if (!streaming) {
-      setDisplayedText(markdownText || ""); // Fallback for non-streaming
+      setDisplayedText(markdownText || ""); 
     }
   }, [markdownText, streaming, onComplete]);
 

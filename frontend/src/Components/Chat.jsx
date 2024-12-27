@@ -1,9 +1,13 @@
-
-import React, { useState, useEffect, createContext, useContext ,useRef} from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useRef,
+} from "react";
 import "./Chat.css";
 import axios from "axios";
 import MarkdownRenderer from "./MarkDown";
-
 
 const ChatContext = createContext();
 const ChatProvider = ({ children }) => {
@@ -52,7 +56,13 @@ const Chat = () => {
         ...chats,
         {
           user: prompt,
-          bot: <MarkdownRenderer markdownText={response.data.message} />,
+          bot: (
+            <MarkdownRenderer
+              markdownText={response.data.message || ""}
+              streaming={true}
+              onComplete={() => console.log("Streaming complete")}
+            />
+          ),
         },
       ]);
     } catch (error) {
@@ -78,9 +88,9 @@ const Chat = () => {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  },[chats]);
+  }, [chats]);
 
   return (
     <div className="container">
@@ -97,7 +107,7 @@ const Chat = () => {
               {chat.bot && <div className="chat-message-bot">{chat.bot}</div>}
             </div>
           ))}
-           <div ref={chatEndRef}></div>
+        <div ref={chatEndRef}></div>
         </div>
         <div className="message">
           <textarea

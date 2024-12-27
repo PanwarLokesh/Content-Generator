@@ -1,10 +1,14 @@
-
 .container {
-  margin: 0;
+  /* margin: 0;
   padding: 0;
   background-color: rgb(47 47 47);
   height: 100vh;
-  width: 100vw;
+  width: 100vw; */
+
+  height: calc(100vh - 4rem); /* Subtract navbar height */
+  background-color: rgb(47 47 47);
+  display: flex;
+  flex-direction: column;
 }
 
 .chatbox {
@@ -28,18 +32,18 @@
   border-radius: 8px;
   padding: 4px;
   background-color: rgb(47 47 47);
-  overflow-y: auto; 
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.box{
+.box {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border:none;
+  border: none;
   background-color: rgb(47 47 47);
 }
 .chat-message-user {
@@ -47,20 +51,18 @@
   font-size: 16px;
   padding: 8px 12px;
   margin: 5px 15px;
-  display: inline-block; 
-  max-width: 80%; 
-  word-wrap: break-word; 
+  display: inline-block;
+  max-width: 80%;
+  word-wrap: break-word;
   border-radius: 12px;
   background-color: #424242;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   white-space: pre-wrap;
-  word-break: break-word; 
+  word-break: break-word;
   align-self: flex-end;
 }
 .chat-message-bot {
-   
-  max-width: 98%; 
-  
+  max-width: 98%;
 }
 
 .message {
@@ -82,12 +84,11 @@
   font-size: 20px;
   border: none;
   outline: none;
-  overflow-y: auto; 
-  resize: none; 
+  overflow-y: auto;
+  resize: none;
 }
 
-
-.Starter{
+.Starter {
   align-self: center;
   color: white;
   margin: auto;
@@ -103,6 +104,3 @@
   background: #6b6b6b;
   border-radius: 4px;
 }
-
-
-

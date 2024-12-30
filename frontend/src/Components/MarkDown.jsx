@@ -27,8 +27,6 @@ const MarkdownRenderer = ({ markdownText, streaming = false, onComplete }) => {
       setDisplayedText(markdownText || ""); 
     }
   }, [markdownText, streaming, onComplete]);
-
-  console.log(displayedText);
   return (
     <div className="markdown-container">
       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
